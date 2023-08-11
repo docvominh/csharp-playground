@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csproj", "{BA4644E2-03DB-49BC-8958-DEB0CB624F1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameWork", "EntityFrameWork\EntityFrameWork.csproj", "{B60299DB-7484-48C6-BB91-05472C6B6BDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWeb", "BlazorWeb\BlazorWeb.csproj", "{3098776F-B325-48AE-AC80-2737C9C4244E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA4644E2-03DB-49BC-8958-DEB0CB624F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA4644E2-03DB-49BC-8958-DEB0CB624F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA4644E2-03DB-49BC-8958-DEB0CB624F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA4644E2-03DB-49BC-8958-DEB0CB624F1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B60299DB-7484-48C6-BB91-05472C6B6BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B60299DB-7484-48C6-BB91-05472C6B6BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B60299DB-7484-48C6-BB91-05472C6B6BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B60299DB-7484-48C6-BB91-05472C6B6BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3098776F-B325-48AE-AC80-2737C9C4244E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3098776F-B325-48AE-AC80-2737C9C4244E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3098776F-B325-48AE-AC80-2737C9C4244E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3098776F-B325-48AE-AC80-2737C9C4244E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
