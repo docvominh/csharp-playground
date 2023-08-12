@@ -8,5 +8,5 @@ public class ProductEntity
     public decimal? Price { get; set; }
     public string? Manufacture { get; set; }
     public virtual ProductDetailEntity? ProductDetail { get; set; }
-    public virtual ICollection<ProductProviderEntity> ProductProviders { get; set; }
+    public virtual ICollection<ProviderEntity> Providers { get; set; }
 }

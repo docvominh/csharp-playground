@@ -89,32 +89,20 @@ public class Test
         _context.Products.Add(newProduct);
         _context.SaveChanges();
 
-        newProduct.ProductProviders = new List<ProductProviderEntity>()
-        {
-            new()
-            {
-                Product = newProduct,
-                Provider = providers[0]
-            },
-            new()
-            {
-                Product = newProduct,
-                Provider = providers[1]
-            }
-        };
+        newProduct.Providers = providers;
 
         _context.Products.Update(newProduct);
         _context.SaveChanges();
         
         var product = _context.Products
             .Include(productEntity => productEntity.ProductDetail)
-            .Include(productEntity => productEntity.ProductProviders)
+            .Include(productEntity => productEntity.Providers)
             .SingleOrDefault(e => e.Id == newProduct.Id);
 
         Assert.That(product, Is.Not.Null);
         Assert.That(product?.Name, Is.EqualTo("Asus 202"));
         Assert.That(product?.ProductDetail?.Comment, Is.EqualTo("Cheap"));
-        Assert.That(product?.ProductProviders?.Count, Is.EqualTo(2));
+        Assert.That(product?.Providers?.Count, Is.EqualTo(2));
         
     }
 }
