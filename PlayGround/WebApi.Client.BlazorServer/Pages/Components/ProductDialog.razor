@@ -1,0 +1,45 @@
+@using WebApi.Models
+<h3>ProductDialog</h3>
+
+
+<div class="dialog-title">
+    <h2>@Title</h2>
+</div>
+<form class="dialog-body">
+    @if (Product.Id is not null)
+    {
+        <div>
+            <label>Id</label>
+            <input type="text" @bind="Product.Id"/>
+        </div>
+    }
+
+    <div>
+        <label>Name</label>
+        <input type="text" @bind="Product.Name"/>
+    </div>
+    <div>
+        <label>Category</label>
+        <input type="text" @bind="Product.Category"/>
+    </div>
+    <div>
+        <label>Price</label>
+        <input type="text" @bind="Product.Price"/>
+    </div>
+    <div>
+        <label>Manufacture</label>
+        <input type="text" @bind="Product.Manufacture"/>
+    </div>
+</form>
+
+<div class="dialog-buttons">
+    <button class="btn btn-secondary mr-auto" type="submit" @onclick="OnCancel">Cancel</button>
+    <button class="btn btn-success ml-auto" type="submit" @onclick="OnConfirm">Save</button>
+</div>
+
+@code {
+    [Parameter] public Product? Product { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    [Parameter] public EventCallback OnConfirm { get; set; }
+    [Parameter] public string? Title { get; set; }
+}

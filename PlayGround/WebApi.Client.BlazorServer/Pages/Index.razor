@@ -1,0 +1,131 @@
+﻿@page "/"
+@using WebApi.Models
+@using WebApi.Client.BlazorServer.Pages.Components
+@using Newtonsoft.Json
+@using System.Text
+@using System.Net
+@inject HttpClient HttpClient
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+<h3>Products</h3>
+<button @onclick="NewProduct">New Product</button>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Manufacture</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var p in Products!)
+    {
+        <tr>
+            <td>@p.Id</td>
+            <td>@p.Name</td>
+            <td>@p.Category</td>
+            <td>@p.Price</td>
+            <td>@p.Manufacture</td>
+            <td>
+                <button @onclick="@(() => EditProduct(p))">Edit</button>
+                <button @onclick="@(() => DeleteProduct(p))">Delete</button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<TemplatedDialog Show="ShowProductDialog">
+    <ProductDialog
+        Product="Product"
+        OnCancel="Cancel"
+        OnConfirm="@(Product?.Id == null ? ConfirmCreate : ConfirmEdit)"
+        Title="@Title"/>
+</TemplatedDialog>
+
+@code{
+    public Product? Product { get; set; }
+    private List<Product>? Products { get; set; } = new();
+    public bool ShowProductDialog;
+    public string? Title { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Load();
+    }
+
+    private void NewProduct()
+    {
+        Product = new Product();
+        Title = "New Product";
+        ShowProductDialog = true;
+    }
+
+    private async Task ConfirmCreate()
+    {
+        Console.WriteLine("Log log");
+        var productJson = JsonConvert.SerializeObject(Product, new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        });
+        var data = new StringContent(productJson, Encoding.UTF8, "application/json");
+        var result = await HttpClient.PostAsync("http://localhost:5153/api/products", data);
+
+        if (result.StatusCode == HttpStatusCode.OK)
+        {
+            await Load();
+            ShowProductDialog = false;
+        }
+    }
+
+    private void EditProduct(Product selectedProduct)
+    {
+        Product = selectedProduct;
+        Title = "Edit Product";
+        ShowProductDialog = true;
+    }
+
+    private async Task ConfirmEdit()
+    {
+        var productJson = JsonConvert.SerializeObject(Product, new JsonSerializerSettings
+        {
+            NullValueHandling = NullValueHandling.Ignore
+        });
+        var data = new StringContent(productJson, Encoding.UTF8, "application/json");
+        var result = await HttpClient.PutAsync("http://localhost:5153/api/products", data);
+
+        if (result.StatusCode == HttpStatusCode.OK)
+        {
+            await Load();
+            ShowProductDialog = false;
+        }
+    }
+
+    private async Task DeleteProduct(Product p)
+    {
+        var result = await HttpClient.DeleteAsync($"http://localhost:5153/api/products/{p.Id}");
+
+        if (result.StatusCode == HttpStatusCode.OK)
+        {
+            await Load();
+            ShowProductDialog = false;
+        }
+    }
+
+    private void Cancel()
+    {
+        ShowProductDialog = false;
+    }
+
+    private async Task Load()
+    {
+        Products = await HttpClient.GetFromJsonAsync<List<Product>>("http://localhost:5153/api/products") ?? new List<Product>();
+    }
+
+}

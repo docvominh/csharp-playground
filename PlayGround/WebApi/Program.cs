@@ -13,6 +13,17 @@ builder.Services.AddSwaggerGen();
 DependencyInjection.AddServices(builder);
 
 
+
+var myCors = "localhost";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: myCors,
+        policy  =>
+        {
+            policy.WithOrigins("http://localhost:5198").AllowAnyHeader().AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,5 +38,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(myCors);
 
 app.Run();
