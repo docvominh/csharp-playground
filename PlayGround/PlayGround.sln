@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Client.BlazorServer"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi.Client.BlazorWebAssembly", "WebApi.Client.BlazorWebAssembly\WebApi.Client.BlazorWebAssembly.csproj", "{7191AD02-FD1E-4A6A-89B6-EE29BB2E44A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfluxDB", "InfluxDB\InfluxDB.csproj", "{162F8CB0-FD30-4C8E-B606-3564E5D35A00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{7191AD02-FD1E-4A6A-89B6-EE29BB2E44A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7191AD02-FD1E-4A6A-89B6-EE29BB2E44A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7191AD02-FD1E-4A6A-89B6-EE29BB2E44A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{162F8CB0-FD30-4C8E-B606-3564E5D35A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{162F8CB0-FD30-4C8E-B606-3564E5D35A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{162F8CB0-FD30-4C8E-B606-3564E5D35A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{162F8CB0-FD30-4C8E-B606-3564E5D35A00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
