@@ -17,7 +17,39 @@ namespace WebApi.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
 
-            modelBuilder.Entity("EntityFrameWork.Database.Entity.ProductEntity", b =>
+            modelBuilder.Entity("ProductProviders", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProviderId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("ProductId", "ProviderId")
+                        .HasName("PK_Product_Provider");
+
+                    b.HasIndex("ProviderId");
+
+                    b.ToTable("ProductProviders");
+                });
+
+            modelBuilder.Entity("WebApi.Data.Entity.ProductDetailEntity", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ProductId")
+                        .HasName("PK_ProductDetails");
+
+                    b.ToTable("ProductDetails", (string)null);
+                });
+
+            modelBuilder.Entity("WebApi.Data.Entity.ProductEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,39 +77,7 @@ namespace WebApi.Data.Migrations
                     b.ToTable("Products", (string)null);
                 });
 
-            modelBuilder.Entity("ProductProviders", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProviderId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("ProductId", "ProviderId")
-                        .HasName("PK_Product_Provider");
-
-                    b.HasIndex("ProviderId");
-
-                    b.ToTable("ProductProviders");
-                });
-
-            modelBuilder.Entity("WebApi.Database.Entity.ProductDetailEntity", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("ProductId")
-                        .HasName("PK_ProductDetails");
-
-                    b.ToTable("ProductDetails", (string)null);
-                });
-
-            modelBuilder.Entity("WebApi.Database.Entity.ProviderEntity", b =>
+            modelBuilder.Entity("WebApi.Data.Entity.ProviderEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -99,14 +99,14 @@ namespace WebApi.Data.Migrations
 
             modelBuilder.Entity("ProductProviders", b =>
                 {
-                    b.HasOne("EntityFrameWork.Database.Entity.ProductEntity", null)
+                    b.HasOne("WebApi.Data.Entity.ProductEntity", null)
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Product_ProductId");
 
-                    b.HasOne("WebApi.Database.Entity.ProviderEntity", null)
+                    b.HasOne("WebApi.Data.Entity.ProviderEntity", null)
                         .WithMany()
                         .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -114,11 +114,11 @@ namespace WebApi.Data.Migrations
                         .HasConstraintName("FK_Provider_ProviderId");
                 });
 
-            modelBuilder.Entity("WebApi.Database.Entity.ProductDetailEntity", b =>
+            modelBuilder.Entity("WebApi.Data.Entity.ProductDetailEntity", b =>
                 {
-                    b.HasOne("EntityFrameWork.Database.Entity.ProductEntity", "Product")
+                    b.HasOne("WebApi.Data.Entity.ProductEntity", "Product")
                         .WithOne("ProductDetail")
-                        .HasForeignKey("WebApi.Database.Entity.ProductDetailEntity", "ProductId")
+                        .HasForeignKey("WebApi.Data.Entity.ProductDetailEntity", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_ProductId");
@@ -126,7 +126,7 @@ namespace WebApi.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("EntityFrameWork.Database.Entity.ProductEntity", b =>
+            modelBuilder.Entity("WebApi.Data.Entity.ProductEntity", b =>
                 {
                     b.Navigation("ProductDetail");
                 });
