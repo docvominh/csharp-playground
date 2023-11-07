@@ -1,0 +1,30 @@
+@inject WeatherApiClient Client
+
+<div class="overview">
+    @if (_locationWraps != null)
+    {
+        foreach (var locationWrap in _locationWraps)
+        {
+            <div>
+                <WeatherItem Closable="true" Editable="false" Unit="C" LocationWrap="@locationWrap"></WeatherItem>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Loading...</p>
+    }
+
+</div>
+
+@code
+{
+
+    private List<LocationWrap>? _locationWraps;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _locationWraps = await Client!.GetLocationByCities(new[] { "Da nang", "Ha Noi" });
+    }
+
+}

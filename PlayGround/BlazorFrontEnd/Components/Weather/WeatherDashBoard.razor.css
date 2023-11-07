@@ -1,0 +1,9 @@
+.overview {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.overview > div {
+    margin-bottom: 15px;
+}
+

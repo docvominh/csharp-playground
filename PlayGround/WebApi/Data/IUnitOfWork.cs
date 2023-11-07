@@ -12,7 +12,7 @@ public interface IUnitOfWork
 public sealed class UnitOfWork : IUnitOfWork, IDisposable
 {
     private readonly ApplicationDbContext _context;
-    private IProductRepository _productRepository = null!;
+    private IProductRepository? _productRepository;
 
 
     public UnitOfWork(ApplicationDbContext context)

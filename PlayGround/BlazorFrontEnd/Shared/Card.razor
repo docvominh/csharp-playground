@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-content">
+        @ChildContent
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    [EditorRequired]
+    public required RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string? ClassName { get; set; }
+
+}

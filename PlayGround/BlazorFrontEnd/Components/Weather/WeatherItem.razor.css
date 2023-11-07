@@ -1,0 +1,13 @@
+.icon {
+    position: absolute;
+    cursor: pointer;
+    top: 5px;
+}
+
+.icon.remove {
+    right: 5px;
+}
+
+.icon.edit {
+    right: 35px;
+}

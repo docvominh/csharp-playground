@@ -1,0 +1,27 @@
+@inherits TestContext
+
+@using BlazorFrontEnd.Shared
+@using System.Globalization
+
+@code {
+
+    [Fact]
+    public void TestRenderDatetime()
+    {
+        var input = DateTime.ParseExact("2023-08-22 17:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+        var cut = Render(@<Time Input="@input" TimeOnly="@(false)"></Time>);
+
+        cut.Find("span").MarkupMatches(@<span>22.08.2023 17:00</span>);
+    }
+
+    [Fact]
+    public void TestRenderTimeOnly()
+    {
+        var input = DateTime.ParseExact("2023-08-22 17:00", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+        var cut = Render(@<Time Input="@input" TimeOnly="@(true)"></Time>);
+
+        cut.Find("span").MarkupMatches(@<span>17:00</span>);
+    }
+
+
+}

@@ -1,0 +1,32 @@
+<html lang="en">
+<body>
+<div>
+    @if(Model != null){
+        <p style="color:black!important; font-weight: bold">@Model.Id</p>
+        <p>@Model.Name</p>
+    }
+
+    <div>
+        <img src="@Model.ImageUrl" alt="" style="border: 1px solid black;width:300px"/>
+    </div>
+
+    <br/>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="color:red">Project</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(string p in Model.Projects){
+                <tr>
+                    <td>@p</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
