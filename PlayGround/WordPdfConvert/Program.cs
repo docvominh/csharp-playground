@@ -34,9 +34,9 @@ Employee model = new Employee
     ImageUrl = "https://pdminh.dev/images/me.jpg",
     Projects = new List<string>()
     {
-        "Fibronostics",
-        "GEA 360 View",
-        "Zuhlke Insight"
+        "Project 1",
+        "Project 2",
+        "Project 2"
     }
 };
 
