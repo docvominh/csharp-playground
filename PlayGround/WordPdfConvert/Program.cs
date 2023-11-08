@@ -36,7 +36,7 @@ Employee model = new Employee
     {
         "Project 1",
         "Project 2",
-        "Project 2"
+        "Project 3"
     }
 };
 
