@@ -122,7 +122,7 @@ internal class CustomAssemblyLoadContext : AssemblyLoadContext
 
     protected override Assembly Load(AssemblyName assemblyName)
     {
-        throw new NotImplementedException();
+        return null;
     }
 
     protected override IntPtr LoadUnmanagedDll(string unmanagedDllName)
