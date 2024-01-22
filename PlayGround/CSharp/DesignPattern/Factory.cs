@@ -100,11 +100,11 @@ class Client
     }
 }
 
-class Program
-{
-    [Test]
-    public void Test()
-    {
-        new Client().Main();
-    }
-}
+// class Program
+// {
+//     [Test]
+//     public void Test()
+//     {
+//         new Client().Main();
+//     }
+// }

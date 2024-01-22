@@ -1,24 +1,23 @@
 using EntityFrameWork.Database;
 using EntityFrameWork.Database.Entity;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using NUnit.Framework;
+using Xunit;
 
 namespace EntityFrameWork.Test;
 
-[TestFixture]
 public class Test
 {
-    private ApplicationDbContext? _context;
+    private readonly AppDbContext? _context;
 
-    [SetUp]
-    public void SetUp()
+    public Test()
     {
-        _context = new ApplicationDbContext();
+        _context = new AppDbContext();
         _context.Products.ExecuteDelete();
         _context.Providers.ExecuteDelete();
     }
 
-    [Test]
+    [Fact]
     public void TestInsertProduct()
     {
         // Add product
@@ -41,15 +40,14 @@ public class Test
             .Include(productEntity => productEntity.ProductDetail)
             .SingleOrDefault(e => e.Id == newProduct.Id);
 
-        Assert.That(product, Is.Not.Null);
-        Assert.That(product?.Name, Is.EqualTo("Asus 202"));
-        Assert.That(product?.ProductDetail?.Comment, Is.EqualTo("Cheap"));
-        
+        product.Should().NotBeNull();
+        product.Name.Should().Be("Asus 202");
+        product.ProductDetail.Comment.Should().Be("Cheap");
     }
-    [Test]
+
+    [Fact]
     public void TestInsertProductWithProvider()
     {
-
         if (_context is null)
         {
             throw new NullReferenceException();
@@ -69,10 +67,10 @@ public class Test
                 Address = "123 SSA"
             }
         };
-        
+
         _context.Providers.AddRange(providers);
         _context.SaveChanges();
-        
+
         // Add product
         var newProduct = new ProductEntity()
         {
@@ -93,16 +91,15 @@ public class Test
 
         _context.Products.Update(newProduct);
         _context.SaveChanges();
-        
+
         var product = _context.Products
             .Include(productEntity => productEntity.ProductDetail)
             .Include(productEntity => productEntity.Providers)
             .SingleOrDefault(e => e.Id == newProduct.Id);
 
-        Assert.That(product, Is.Not.Null);
-        Assert.That(product?.Name, Is.EqualTo("Asus 202"));
-        Assert.That(product?.ProductDetail?.Comment, Is.EqualTo("Cheap"));
-        Assert.That(product?.Providers?.Count, Is.EqualTo(2));
-        
+        product.Should().NotBeNull();
+        product.Name.Should().Be("Asus 202");
+        product.ProductDetail.Comment.Should().Be("Cheap");
+        product.Providers?.Count.Should().Be(2);
     }
 }
