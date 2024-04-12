@@ -6,9 +6,6 @@ Console.WriteLine("Start");
 BenchmarkRunner.Run<BenchCheck>();
 Console.WriteLine("Done");
 
-
-
-
 [MemoryDiagnoser]
 public class BenchCheck
 {
