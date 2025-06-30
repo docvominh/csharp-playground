@@ -60,8 +60,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MartenEventSource", "Archit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountWithMarten", "Architect\EventSource\BankAccountWithMarten\BankAccountWithMarten.csproj", "{82D195F3-353D-4C71-94C1-8B095AB04899}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiApp1", "MauiApp1\MauiApp1.csproj", "{71978A72-B75B-4CA2-A5B4-723048B84631}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT", "JWT\JWT.csproj", "{89585510-AE93-4C40-B5B1-70917CDE42F5}"
 EndProject
 Global
@@ -150,10 +148,6 @@ Global
 		{82D195F3-353D-4C71-94C1-8B095AB04899}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82D195F3-353D-4C71-94C1-8B095AB04899}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82D195F3-353D-4C71-94C1-8B095AB04899}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71978A72-B75B-4CA2-A5B4-723048B84631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71978A72-B75B-4CA2-A5B4-723048B84631}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71978A72-B75B-4CA2-A5B4-723048B84631}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71978A72-B75B-4CA2-A5B4-723048B84631}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89585510-AE93-4C40-B5B1-70917CDE42F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89585510-AE93-4C40-B5B1-70917CDE42F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89585510-AE93-4C40-B5B1-70917CDE42F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
