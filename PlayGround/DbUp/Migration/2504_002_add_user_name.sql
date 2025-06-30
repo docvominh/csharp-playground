@@ -1,0 +1,12 @@
+ALTER TABLE Users
+Add Username NVARCHAR(50) NULL;
+GO
+
+UPDATE Users
+SET Username = LEFT(Email, CHARINDEX('@', Email) - 1)
+WHERE Email IS NOT NULL;
+GO
+
+ALTER TABLE Users
+ALTER COLUMN Username NVARCHAR(50) NOT NULL;
+GO
