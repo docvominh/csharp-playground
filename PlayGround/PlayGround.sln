@@ -72,6 +72,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BankAccountWithMarten", "Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountWithMarten", "BankAccountWithMarten\BankAccountWithMarten.csproj", "{28D0C0CF-8A83-4F4B-9F83-46CACF0159CB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernates", "Kubernates", "{5A8AC9ED-9A2A-443A-AA14-A48BA7ABA271}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
