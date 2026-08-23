@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace CSharp.Datetime;
+namespace CSharp.Datetime.DatetimeWithoutOffset;
 
 public sealed class PartnerDateTimeOffsetConverter : JsonConverter<DateTimeOffset?>
 {

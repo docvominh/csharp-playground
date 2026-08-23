@@ -2,7 +2,7 @@
 using Shouldly;
 using Xunit;
 
-namespace CSharp.Datetime;
+namespace CSharp.Datetime.DatetimeWithoutOffset;
 
 public class PartnerDateTimeOffsetConverterTests
 {
