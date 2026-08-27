@@ -1,0 +1,31 @@
+<main class="main">
+  <div class="content">
+    <h1>Weather Forecast</h1>
+
+    <button (click)="loadForecast()" [disabled]="loading">Refresh</button>
+
+    <p *ngIf="loading">Loading...</p>
+    <p *ngIf="error" class="error">{{ error }}</p>
+
+    <table *ngIf="!loading && !error && forecasts.length">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Temp. (C)</th>
+          <th>Temp. (F)</th>
+          <th>Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let forecast of forecasts">
+          <td>{{ forecast.date | date: 'mediumDate' }}</td>
+          <td>{{ forecast.temperatureC }}</td>
+          <td>{{ forecast.temperatureF }}</td>
+          <td>{{ forecast.summary }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<router-outlet/>

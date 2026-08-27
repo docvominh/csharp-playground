@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <SpaRoot>$(MSBuildProjectDirectory)\..\UI\</SpaRoot>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10"/>
+    </ItemGroup>
+
+    <Target Name="PublishSpa" AfterTargets="ComputeFilesToPublish">
+        <Exec Command="pnpm install" WorkingDirectory="$(SpaRoot)"/>
+        <Exec Command="pnpm run build" WorkingDirectory="$(SpaRoot)"/>
+
+        <ItemGroup>
+            <SpaDistFiles Include="$(SpaRoot)dist\simple-ui\browser\**"/>
+            <ResolvedFileToPublish Include="@(SpaDistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+                <RelativePath>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</RelativePath>
+                <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+            </ResolvedFileToPublish>
+        </ItemGroup>
+    </Target>
+
+</Project>
