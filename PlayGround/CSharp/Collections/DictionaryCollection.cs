@@ -2,7 +2,7 @@ namespace CSharp.Collections;
 
 public class DictionaryCollection
 {
-    [Test]
+    [Fact]
     public void TestDictionary()
     {
         var books = new Dictionary<int, Book>
@@ -12,15 +12,15 @@ public class DictionaryCollection
             { 2, new Book("Dummy Java", 1998) }
         };
 
-        Assert.That(books.ElementAt(0).Key, Is.EqualTo(1));
-        Assert.That(books.ElementAt(1).Key, Is.EqualTo(3));
-        Assert.That(books.ElementAt(2).Key, Is.EqualTo(2));
+        books.ElementAt(0).Key.ShouldBe(1);
+        books.ElementAt(1).Key.ShouldBe(3);
+        books.ElementAt(2).Key.ShouldBe(2);
 
 
-        Assert.That(books[3].Name, Is.EqualTo("Dummy C++"));
+        books[3].Name.ShouldBe("Dummy C++");
     }
 
-    [Test]
+    [Fact]
     public void SortedDictionary()
     {
         var books = new SortedDictionary<int, Book>
@@ -30,11 +30,11 @@ public class DictionaryCollection
             { 2, new Book("Dummy Java", 1998) }
         };
 
-        Assert.That(books.ElementAt(0).Key, Is.EqualTo(1));
-        Assert.That(books.ElementAt(1).Key, Is.EqualTo(2));
-        Assert.That(books.ElementAt(2).Key, Is.EqualTo(3));
+        books.ElementAt(0).Key.ShouldBe(1);
+        books.ElementAt(1).Key.ShouldBe(2);
+        books.ElementAt(2).Key.ShouldBe(3);
 
 
-        Assert.That(books[3].Name, Is.EqualTo("Dummy C++"));
+        books[3].Name.ShouldBe("Dummy C++");
     }
 }

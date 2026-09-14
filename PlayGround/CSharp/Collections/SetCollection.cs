@@ -2,7 +2,7 @@ namespace CSharp.Collections;
 
 public class SetCollection
 {
-    [Test]
+    [Fact]
     public void TestHashSet()
     {
         var books = new HashSet<Book>
@@ -13,10 +13,10 @@ public class SetCollection
         };
 
 
-        Assert.That(books.Count, Is.EqualTo(2));
+        books.Count.ShouldBe(2);
     }
 
-    [Test]
+    [Fact]
     public void TestSortedHashSet()
     {
         var books = new SortedSet<Book>(Comparer<Book>.Create((a, b) => a.Year.CompareTo(b.Year)))
@@ -27,9 +27,9 @@ public class SetCollection
             new("Dummy C#", 1995)
         };
 
-        Assert.That(books.Count, Is.EqualTo(3));
-        Assert.That(books.ElementAt(0).Name, Is.EqualTo("Dummy C#"));
-        Assert.That(books.ElementAt(1).Name, Is.EqualTo("7 Good Habit"));
-        Assert.That(books.ElementAt(2).Name, Is.EqualTo("Dummy C++"));
+        books.Count.ShouldBe(3);
+        books.ElementAt(0).Name.ShouldBe("Dummy C#");
+        books.ElementAt(1).Name.ShouldBe("7 Good Habit");
+        books.ElementAt(2).Name.ShouldBe("Dummy C++");
     }
 }

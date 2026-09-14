@@ -5,22 +5,22 @@ public class Nullable
     // Promise with Compiler that _privateText won't be null
     private string _privateText = null!;
 
-    [Test]
+    [Fact]
     public void TestNullable()
     {
         _privateText = string.Empty;
-        Assert.That(_privateText, Is.Not.Null);
+        _privateText.ShouldNotBeNull();
 
         // <Nullable>enable</Nullable> warning all the null var/property
         string text2 = null;
-        Assert.That(text2, Is.Null);
-        
+        text2.ShouldBeNull();
+
         string? text3 = null;
-        Assert.That(text3, Is.Null);
+        text3.ShouldBeNull();
 
 
         var person = GetPerson();
-        Assert.That(person.Address?.HouseNumber, Is.Null);
+        (person.Address?.HouseNumber).ShouldBeNull();
     }
 
     private Person GetPerson()

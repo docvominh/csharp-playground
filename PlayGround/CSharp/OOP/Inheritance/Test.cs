@@ -2,7 +2,7 @@ namespace CSharp.OOP.Inheritance;
 
 public class Test
 {
-    [Test]
+    [Fact]
     public void Test1()
     {
         var dog = new Dog { Name = "Dog" };

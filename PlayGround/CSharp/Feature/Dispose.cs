@@ -4,7 +4,7 @@ namespace CSharp.Feature;
 
 public class Dispose
 {
-    [Test]
+    [Fact]
     public void TestDispose()
     {
         // TestInternal();
@@ -14,7 +14,7 @@ public class Dispose
 
         var x = 1;
         var y = JsonConvert.SerializeObject(x);
-        Assert.That("1", Is.EqualTo(y));
+        y.ShouldBe("1");
     }
 
     private void TestInternal()

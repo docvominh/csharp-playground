@@ -4,7 +4,7 @@ namespace CSharp.OOP.Generic;
 
 public class Test
 {
-    [Test]
+    [Fact]
     public void TestGeneric()
     {
         BookService service = new BookService();
@@ -13,6 +13,6 @@ public class Test
 
         var saved = service.Save(book);
 
-        Assert.That(book, Is.EqualTo(saved));
+        book.ShouldBe(saved);
     }
 }

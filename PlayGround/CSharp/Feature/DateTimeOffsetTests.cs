@@ -1,42 +1,85 @@
 using System.Globalization;
-using FluentAssertions;
 
 namespace CSharp.Feature;
 
 public class DateTimeOffsetTests
 {
-    [Test]
-    public void Test()
+    [Fact]
+    public void DefaultDateTimeOffset_IsMinValue()
     {
         DateTimeOffset today = new DateTimeOffset();
-        Console.WriteLine(today); // 01/01/0001 00:00:00 +00:00
 
-        today.Should().Be(DateTimeOffset.MinValue); // True
+        today.ShouldBe(DateTimeOffset.MinValue);
+    }
 
-        today = DateTimeOffset.Now;
-        Console.WriteLine(today.ToString());
+    [Fact]
+    public void Now_MatchesLocalTimeZoneOffset()
+    {
+        var now = DateTimeOffset.Now;
 
-        today = DateTimeOffset.UtcNow;
-        Console.WriteLine(today);
+        now.Offset.ShouldBe(TimeZoneInfo.Local.GetUtcOffset(now.DateTime));
+    }
 
-        var test =  DateTime.UtcNow;
-        Console.WriteLine(test);
+    [Fact]
+    public void UtcNow_HasZeroOffset()
+    {
+        DateTimeOffset.UtcNow.Offset.ShouldBe(TimeSpan.Zero);
+    }
 
-        var utcNow =  DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
-        Console.WriteLine(today);
-        Console.WriteLine(CultureInfo.CurrentCulture.DateTimeFormat.FullDateTimePattern);
+    [Fact]
+    public void DateTimeUtcNow_HasUtcKind()
+    {
+        DateTime.UtcNow.Kind.ShouldBe(DateTimeKind.Utc);
+    }
 
-        var todayx = new DateTimeOffset(2024, 1, 1, 11, 30, 00, new TimeSpan(7, 0, 0));
-        Console.WriteLine(todayx); // 01/01/2024 11:30:00 +07:00
+    [Fact]
+    public void SpecifyKind_ChangesKindWithoutConvertingValue()
+    {
+        var unspecified = new DateTime(2024, 6, 15, 9, 0, 0, DateTimeKind.Unspecified);
 
-        Console.WriteLine(DateTimeOffset.Now);     // Local machine Vietnam UTC+7 time  08/01/2024 11:40:38 +07:00
-        Console.WriteLine(DateTimeOffset.UtcNow); // Basis of utc time (UTC or UTC+0)   08/01/2024 04:40:38 +00:00
+        var asUtc = DateTime.SpecifyKind(unspecified, DateTimeKind.Utc);
 
-        Console.WriteLine(DateTimeOffset.UtcNow.ToString("dd-MM-yyyy HH:ss:mmzzz"));
+        asUtc.Kind.ShouldBe(DateTimeKind.Utc);
+        asUtc.ShouldBe(new DateTime(2024, 6, 15, 9, 0, 0, DateTimeKind.Utc));
+    }
 
+    [Fact]
+    public void Constructor_WithOffset_SetsExpectedProperties()
+    {
+        var todayx = new DateTimeOffset(2024, 1, 1, 11, 30, 0, new TimeSpan(7, 0, 0));
+
+        todayx.DateTime.ShouldBe(new DateTime(2024, 1, 1, 11, 30, 0));
+        todayx.Offset.ShouldBe(TimeSpan.FromHours(7));
+        todayx.ToUniversalTime().ShouldBe(new DateTimeOffset(2024, 1, 1, 4, 30, 0, TimeSpan.Zero));
+    }
+
+    [Fact]
+    public void ToString_WithCustomFormat_IncludesOffset()
+    {
+        var todayx = new DateTimeOffset(2024, 1, 1, 11, 30, 0, new TimeSpan(7, 0, 0));
+
+        todayx.ToString("dd/MM/yyyy HH:mm:ss zzz").ShouldBe("01/01/2024 11:30:00 +07:00");
+    }
+
+    [Fact]
+    public void ParseExact_WithCustomFormat_ParsesOffsetCorrectly()
+    {
         var utcTimeString = "2024-01-01T11:30:00+07:00";
-        var utcTime = DateTimeOffset.ParseExact(utcTimeString, "yyyy-MM-ddTHH:ss:mmzzz", CultureInfo.InvariantCulture);
-        // Format ISO-8061 to better readable pattern
-        Console.WriteLine(utcTime.ToString("dd-MM-yyyy HH:ss:mm zzz")); // 01-01-2024 11:30:00 +07:00
+
+        var utcTime = DateTimeOffset.ParseExact(utcTimeString, "yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture);
+
+        utcTime.DateTime.ShouldBe(new DateTime(2024, 1, 1, 11, 30, 0));
+        utcTime.Offset.ShouldBe(TimeSpan.FromHours(7));
+        utcTime.ToUniversalTime().ShouldBe(new DateTimeOffset(2024, 1, 1, 4, 30, 0, TimeSpan.Zero));
+    }
+
+    [Fact]
+    public void ToString_AfterParsingWithOffset_FormatsAsReadablePattern()
+    {
+        var utcTimeString = "2024-01-01T11:30:00+07:00";
+        var utcTime = DateTimeOffset.ParseExact(utcTimeString, "yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture);
+
+        // Format ISO-8601 to a more readable pattern
+        utcTime.ToString("dd-MM-yyyy HH:mm:ss zzz").ShouldBe("01-01-2024 11:30:00 +07:00");
     }
 }

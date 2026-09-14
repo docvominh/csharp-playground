@@ -2,12 +2,12 @@ namespace CSharp.EveryThingPassByValue;
 
 public class Test
 {
-    [Test]
+    [Fact]
     public void TestReference()
     {
         var text = "Hello";
         var newText = ChangeText(text);
-        Assert.That(text, Is.Not.EqualTo(newText));
+        text.ShouldNotBe(newText);
 
 
         // Person is reference type
@@ -19,8 +19,8 @@ public class Test
 
         var newPerson = ChangePerson(person);
 
-        Assert.That(person.GetHashCode(), Is.EqualTo(newPerson.GetHashCode()));
-        Assert.That(person, Is.EqualTo(newPerson));
+        person.GetHashCode().ShouldBe(newPerson.GetHashCode());
+        person.ShouldBe(newPerson);
 
         // Struct is value type
         var car = new Car()
@@ -30,15 +30,15 @@ public class Test
         };
 
         var newCar = ChangeCar(car);
-        Assert.That(car, Is.Not.EqualTo(newCar));
+        car.ShouldNotBe(newCar);
 
         newCar = ChangeCar(ref car);
-        Assert.That(car, Is.EqualTo(newCar));
+        car.ShouldBe(newCar);
 
         Car emptyCar;
         SetUpCar(out emptyCar);
 
-        Assert.That(emptyCar.Name, Is.EqualTo("Vios"));
+        emptyCar.Name.ShouldBe("Vios");
     }
 
     private String ChangeText(String text)

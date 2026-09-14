@@ -5,7 +5,7 @@ namespace CSharp.Feature;
 [MemoryDiagnoser]
 public class BenchMarkTest
 {
-    [Test]
+    [Fact]
     public void TestBenchMark()
     {
         OneMilionLoop();

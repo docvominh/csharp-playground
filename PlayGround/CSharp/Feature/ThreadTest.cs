@@ -1,8 +1,8 @@
 namespace CSharp.Feature;
 
-class ThreadTest
+public class ThreadTest
 {
-    [Test]
+    [Fact]
     public void TestThread()
     {
         Console.WriteLine("Main Thread: " + Thread.CurrentThread.Name);
