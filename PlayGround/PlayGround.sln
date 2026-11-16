@@ -74,6 +74,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountWithMarten", "Ba
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernates", "Kubernates", "{5A8AC9ED-9A2A-443A-AA14-A48BA7ABA271}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA", "DSA\DSA.csproj", "{95F1BAEE-A233-43EC-B3F8-E5337DAD7B11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -188,6 +190,10 @@ Global
 		{28D0C0CF-8A83-4F4B-9F83-46CACF0159CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28D0C0CF-8A83-4F4B-9F83-46CACF0159CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28D0C0CF-8A83-4F4B-9F83-46CACF0159CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95F1BAEE-A233-43EC-B3F8-E5337DAD7B11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95F1BAEE-A233-43EC-B3F8-E5337DAD7B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95F1BAEE-A233-43EC-B3F8-E5337DAD7B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95F1BAEE-A233-43EC-B3F8-E5337DAD7B11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B60299DB-7484-48C6-BB91-05472C6B6BDB} = {4BB6C8D3-E2C0-4370-A663-428436EAA123}
